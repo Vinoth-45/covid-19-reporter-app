@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Covid-19-Reports-Dashboard</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        h2 {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .alert {
+            background-color: rgb(211, 125, 75);
+            box-shadow: 3px 3px 15px rgb(14, 90, 84), 3px 3px 15px rgrgb(19, 104, 97);
+            margin-top: 10px;
+            color: white;
+
+        }
+
+        .alert:hover {
+            background-color: rgb(201, 198, 54);
+            color: black;
+        }
+
+        .card {
+            padding-top: 20px;
+
+
+        }
+
+        .card_1 {
+            background-color: rgba(255, 99, 132, 1);
+            color: rgb(26, 24, 24);
+
+
+        }
+
+        .card_2 {
+            background-color: rgba(54, 162, 235, 1);
+            color: rgb(20, 19, 19);
+
+        }
+
+        .card_3 {
+            background-color: rgba(255, 206, 86, 1);
+            color: rgb(14, 13, 13);
+
+
+        }
+
+        .card_4 {
+            background-color: rgba(75, 192, 192, 1);
+            color: rgb(24, 22, 22);
+
+
+        }
+
+        .card_5 {
+            background-color: rgba(153, 102, 255, 1);
+            color: rgb(24, 22, 22);
+
+
+        }
+
+        .card-text {
+            text-align: center;
+            font-weight: 500;
+            font-size: x-large;
+
+        }
+
+        .card-title {
+            text-align: center;
+            line-height: 3rem;
+            font-weight: 700;
+        }
+
+        .card:hover {
+            transform: scale(1.3);
+            z-index: 2;
+            box-shadow: 2px 2px 2px 2px #dcedf1;
+        }
+
+        body {
+            background-color: beige;
+        }
+
+        thead {
+            background-color: rgb(85, 219, 208);
+            font-size: large;
+            color: rgb(65, 63, 63);
+        }
+
+        .button {
+
+            height: 70px;
+            width: 15rem;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: large;
+            cursor: pointer;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            color: white;
+        }
+
+        .linkarea {
+            float:right;
+        }
+        .indiarow {
+            background-color: rgb(209, 138, 197);
+            font-size: large;
+            padding: 5px 5px 0 0;
+            border-bottom: solid black 2px;
+            color: rgb(16, 16, 17);
+        }
+
+        .indiarow:hover {
+            transform: scale(1.1);
+            z-index: 3;
+            box-shadow: 2px 2px 2px 2px #dcedf1;
+        }
+
+       
+
+       
+       
+
+        .piechart1 {
+            width: 500px;
+            height: 300px;
+
+
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .hr1,
+        .hr2 {
+            border: indianred 2px;
+            border-style: ridge;
+
+        }
+
+        h3 {
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .hrlines
+        {
+            margin-top:50px;
+        }
+        .chartitems
+        {
+            margin-bottom:150px;
+        }
+        .vinpage:hover
+        {
+            color : rgba(153, 102, 255, 1);
+        }
+        
+        
+       
+        
+       
+        
+
+    </style>
+    <script>
+        const links = document.querySelectorAll(".indialink");
+        link.forEach((item) => {
+            item.addEventListener("click", () => {
+                let el = document.getElementById(item.getAttribute("data-link"));
+                el.scrollIntoView();
+            })
+        })
+    </script>
+
+
+</head>
+
+<body>
+
+
+
+    <div class="container-fluid">
+
+
+
+        <div class="alert alert-primary text-center " role="alert">
+            <h2>Covid-19 Report</h2>
+            <span class="vino">
+                <span style="font-size:1.5rem;">Created by- &nbsp;</span>
+                <a style ="text-decoration:none;" target="_blank" href ="https://vinoth-45.github.io/persionalsite/"><span class="vinpage" style="font-style:italic;">Vinoth T</span> </a>
+        </span>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="card col m-2 card_1" style="width:15rem;">
+                <div class="card-body">
+                    <h5 class="card-title">New Confirmed</h5>
+
+                    <p class="card-text">{{globalsummary.NewConfirmed}}</p>
+
+                </div>
+            </div>
+            <div class="card col m-2 card_2" style="width:15rem;">
+                <div class="card-body">
+                    <h5 class="card-title">New Deaths</h5>
+
+                    <p class="card-text">{{globalsummary.NewDeaths}}</p>
+
+                </div>
+            </div>
+            <div class="card col card_3  m-2" style="width:15rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Deaths</h5>
+
+                    <p class="card-text">{{globalsummary.TotalDeaths}}</p>
+
+                </div>
+            </div>
+            <div class="card col card_4   m-2" style="width:15rem;">
+                <div class="card-body">
+                    <h5 class="card-title">New Recovered</h5>
+
+                    <p class="card-text">{{globalsummary.NewRecovered}}</p>
+
+                </div>
+            </div>
+            <div class="card col card_5 m-2" style="width:15rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Recovered</h5>
+
+                    <p class="card-text">{{globalsummary.TotalRecovered}}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" >
+        <div class="linkarea"> 
+       <table class = "table-striped">
+           <tr>
+               <td>
+        <a href="https://api.covid19api.com/summary" target="_blank"> <button class="btn btn-success">Click here
+                for Data Source</button> </a>
+        </td>
+
+       <td>
+        <a class="indialink" data-link="indiarecord" href="#india"> <button class="btn btn-primary" onclick="india()">Click here for India record</button></a>
+        </td>
+    </tr>
+</table>
+</div>
+</div>
+ 
+
+
+<div class="container hrlines" >
+
+    <hr class="hr1">
+
+</div>
+
+
+
+<div class="container chartitems">
+    <table class="table table-striped" bgcolor=" beige">
+        <tr>
+            <td>
+                <div class="canvas1" style="max-width:500px;max-height:300px;" >
+                    <h2 style="text-align:center;">Global-Data</h2>
+                
+                <canvas id="myChart" widht="800px" height="500px"></canvas>
+                </div>
+            </td>
+            <td>
+                <h2 style="text-align:center;">India-Data</h2>
+
+        <div class="canvas2" style="max-width:800px;max-height:500px;margin-top:100px;margin-left:30px">
+           
+                <canvas id="myChart1" width="" height=""></canvas>
+            </div>
+        </td>
+    </tr>
+</table>
+          
+    
+
+    </div>
+
+
+
+    </div>
+    <div class="container">
+        <hr class="hr1">
+    </div>
+
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['New Confirmed', 'New Deaths', 'Total Deaths', 'New Recovered', 'Total Recovered'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [{{ globalsummary.NewConfirmed}}, {{globalsummary.NewDeaths}},{{globalsummary.TotalDeaths}},{{globalsummary.NewRecovered}},{{globalsummary.TotalRecovered}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['New Confirmed', 'New Deaths', 'Total Deaths', 'New Recovered', 'Total Recovered'],
+                datasets: [{
+                    label: '# of Votes',
+
+                    data: [{{india.NewConfirmed}},{{india.NewDeaths}}, {{india.TotalDeaths}},{{india.NewRecovered}},{{india.TotalRecovered}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+
+                }
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+    <div class="container-fluid">
+
+        <div class="alert alert-primary text-center" style="margin-top: 10px;" role="alert">
+            <h2> Country Wise Records</h2>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="container">
+
+
+        <table class=" table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Country</th>
+                    <th>Total Confirmed</th>
+                    <th>Total Deaths</th>
+                    <th>Total Recovered</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                {% for i in countries %}
+
+                {% if i.Country == 'India' %}
+
+                <tr id="india" class="indiarow">
+
+
+                    <td class="indiarow">{{forloop.counter}}</td>
+                    <td class="indiarow">{{i.Country}}</td>
+                    <td class="indiarow">{{i.TotalConfirmed}}</td>
+                    <td class="indiarow">{{i.TotalDeaths}}</td>
+                    <td class="indiarow">{{i.TotalRecovered}}</td>
+
+                </tr>
+
+
+                {% endif %}
+
+                <tr>
+
+
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.Country}}</td>
+                    <td>{{i.TotalConfirmed}}</td>
+                    <td>{{i.TotalDeaths}}</td>
+                    <td>{{i.TotalRecovered}}</td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+
+
+
+
+    </div>
+    </div>
+
+
+
+</body>
+
+</html>
